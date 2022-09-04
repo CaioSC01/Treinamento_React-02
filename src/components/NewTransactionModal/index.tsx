@@ -14,10 +14,13 @@ export function NemTransactionModal({
   isOpen,
   onRequestClose,
 }: NewTransactionModalProps) {
+	const [title,setTitle] = useState('')
+	const [value,setValue] = useState(0)
+	const [category,setCategory] = useState('')
   const [type, setType] = useState("deposit");
 
 	function handleCreateNewTransaction(event: FormEvent){
-	
+	event.preventDefault();
 
 	}
 
@@ -38,9 +41,9 @@ export function NemTransactionModal({
         <Container onSubmit={handleCreateNewTransaction}>
           <h2>cadastrar transação</h2>
 
-          <input placeholder="Titulo" />
+          <input placeholder="Titulo" value={title} onChange={event => setTitle(event.target.value)} />
 
-          <input placeholder="Valor" type={"number"} />
+          <input placeholder="Valor" type={"number"} value={value} onChange={event => setValue(Number(event.target.value))} />
 
           <TransectionTypeContainer>
             <RadioBox
@@ -67,7 +70,7 @@ export function NemTransactionModal({
             </RadioBox>
           </TransectionTypeContainer>
 
-          <input placeholder="Categoria" />
+          <input placeholder="Categoria" value={category} onChange={event => setCategory(event.target.value)} />
 
           <button type="submit">cadastrar</button>
         </Container>
