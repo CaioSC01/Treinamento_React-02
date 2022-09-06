@@ -4,6 +4,7 @@ import closeImg from "../../assets/close.svg";
 import iconImg from "../../assets/income.svg";
 import outImg from "../../assets/outcome.svg";
 import { FormEvent, useState } from "react";
+import { api } from "../../services/api";
 
 interface NewTransactionModalProps {
   isOpen: boolean;
@@ -21,6 +22,15 @@ export function NemTransactionModal({
 
 	function handleCreateNewTransaction(event: FormEvent){
 	event.preventDefault();
+
+	const data = {
+		title,
+		value,
+		category,
+		type
+	}
+
+	api.post('/transactions', data)
 
 	}
 
